@@ -147,7 +147,6 @@ study_data =
     values_to = "observation") 
 
 study_data %>% 
-group_by(experiment_arm) %>% 
 ggplot( 
   aes(x = weeks, y = observation, color = ID)) +
   geom_line(aes(group = ID)) +
