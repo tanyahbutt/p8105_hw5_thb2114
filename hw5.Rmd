@@ -108,7 +108,7 @@ results_df =
 
 Try to make a plot showing estimates and confidence intervals.
 
-```{r}
+```{r, collapse = TRUE}
 results_df %>% 
   mutate(city_state = fct_reorder(city_state, estimate)) %>% 
   ggplot(aes(x = city_state, y = estimate )) +
@@ -119,8 +119,21 @@ results_df %>%
 
 ## Problem 2
 
-```{r}
+```{r, collapse=TRUE}
+problem2_df = tibble (
+  files = list.files("./data/")
+  )
 
+read_data <- function(file_name) {
+ 
+  read_csv(paste0("./data/", file_name))
+ 
+}
+
+study_data =
+  problem2_df %>%
+  mutate(
+    individual_data = map(files, read_data))
 
 ```
 
