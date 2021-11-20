@@ -138,20 +138,31 @@ results_df %>%
 ## Problem 2
 
 ``` r
-problem2_df = tibble (
-  files = list.files("./data/")
-  )
+problem2_df = 
+  tibble(
+    files = list.files("./data/")
+   )
 
 read_data <- function(file_name) {
- 
   read_csv(paste0("./data/", file_name))
- 
 }
 
 study_data =
   problem2_df %>%
   mutate(
-    individual_data = map(files, read_data))
+    individual_data = map(files, read_data)) %>% 
+  unnest(individual_data) %>%
+  separate(
+    files, c("experiment_arm", "ID"), "_") %>% 
+  mutate(
+    ID = gsub(".csv","",ID)) %>% 
+  mutate(
+    ID = as.character(ID)
+  ) %>% 
+  pivot_longer(
+    week_1:week_8,
+    names_to = "weeks",
+    values_to = "observation") 
 ## Rows: 1 Columns: 8
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
@@ -292,4 +303,15 @@ study_data =
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+study_data %>% 
+  group_by(ID, experiment_arm) %>% 
+ggplot( 
+  aes(x = weeks, y = observation, color = ID)) +
+  geom_line(aes(group = ID)) +
+  theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'), 
+        legend.position = 'right') +
+   xlab("Weeks") + ylab("Observation") 
 ```
+
+<img src="hw5_files/figure-gfm/unnamed-chunk-7-1.png" width="90%" />
