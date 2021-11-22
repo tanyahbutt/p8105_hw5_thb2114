@@ -137,6 +137,8 @@ results_df %>%
 
 ## Problem 2
 
+I will first load in the data and tidy the result.
+
 ``` r
 problem2_df = 
   tibble(
@@ -162,156 +164,35 @@ study_data =
   pivot_longer(
     week_1:week_8,
     names_to = "weeks",
-    values_to = "observation") 
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 1 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## dbl (8): week_1, week_2, week_3, week_4, week_5, week_6, week_7, week_8
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    values_to = "observation") %>% 
+  mutate(
+    weeks = as.factor(weeks)
+  )
+```
 
-study_data %>% 
-  group_by(ID, experiment_arm) %>% 
+I will now create a spaghetti plot showing observations on each subject
+over time.
+
+``` r
+control_df =  
+  filter(study_data, experiment_arm == "con") %>% 
 ggplot( 
   aes(x = weeks, y = observation, color = ID)) +
+  geom_point(aes(group = ID)) +
   geom_line(aes(group = ID)) +
   theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'), 
         legend.position = 'right') +
-   xlab("Weeks") + ylab("Observation") 
-```
+   xlab("Weeks") + ylab("Observation") +
+   scale_colour_discrete(name = "ID")
 
-<img src="hw5_files/figure-gfm/unnamed-chunk-7-1.png" width="90%" />
+exp_df =  
+  filter(study_data, experiment_arm == "exp") %>% 
+ggplot( 
+  aes(x = weeks, y = observation, color = ID)) +
+  geom_point(aes(group = ID)) +
+  geom_line(aes(group = ID)) +
+  theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'), 
+        legend.position = 'right') +
+   xlab("Weeks") + ylab("Observation") +
+   scale_colour_discrete(name = "ID")
+```
