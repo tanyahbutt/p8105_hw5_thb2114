@@ -166,6 +166,8 @@ ggplot(
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
 
+
+
 exp_df =  
   filter(study_data, experiment_arm == "exp") %>% 
 ggplot( 
@@ -176,5 +178,7 @@ ggplot(
         legend.position = 'right') +
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
+
+exp_df
 ```
 

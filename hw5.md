@@ -185,6 +185,12 @@ ggplot(
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
 
+control_df 
+```
+
+<img src="hw5_files/figure-gfm/unnamed-chunk-8-1.png" width="90%" />
+
+``` r
 exp_df =  
   filter(study_data, experiment_arm == "exp") %>% 
 ggplot( 
@@ -195,4 +201,8 @@ ggplot(
         legend.position = 'right') +
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
+
+exp_df
 ```
+
+<img src="hw5_files/figure-gfm/unnamed-chunk-8-2.png" width="90%" />
