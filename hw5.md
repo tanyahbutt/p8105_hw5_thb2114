@@ -166,12 +166,14 @@ study_data =
     names_to = "weeks",
     values_to = "observation") %>% 
   mutate(
-    weeks = as.factor(weeks)
+    weeks = as.factor(weeks),
+    experiment_arm = as.factor(experiment_arm),
+    ID = as.factor(ID)
   )
 ```
 
 I will now create a spaghetti plot showing observations on each subject
-over time.
+over time by experiment arm.
 
 ``` r
 control_df =  
@@ -185,7 +187,7 @@ ggplot(
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
 
-control_df 
+control_df
 ```
 
 <img src="hw5_files/figure-gfm/unnamed-chunk-8-1.png" width="90%" />

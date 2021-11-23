@@ -147,11 +147,13 @@ study_data =
     names_to = "weeks",
     values_to = "observation") %>% 
   mutate(
-    weeks = as.factor(weeks)
+    weeks = as.factor(weeks),
+    experiment_arm = as.factor(experiment_arm),
+    ID = as.factor(ID)
   )
 ```
 
-I will now create a spaghetti plot showing observations on each subject over time.
+I will now create a spaghetti plot showing observations on each subject over time by experiment arm.
 
 ```{r}
 
@@ -166,7 +168,7 @@ ggplot(
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
 
-
+control_df
 
 exp_df =  
   filter(study_data, experiment_arm == "exp") %>% 
@@ -180,5 +182,22 @@ ggplot(
    scale_colour_discrete(name = "ID")
 
 exp_df
+```
+
+## Problem 3
+
+```{r}
+set.seed(10)
+
+iris_with_missing = iris %>% 
+  map_df(~replace(.x, sample(1:150, 20), NA)) %>%
+  mutate(Species = as.character(Species))
+
+fill_num_variables = function(x){
+
+     mutate_all(x, ~if_else(is.na(.), 0, .))
+  
+  
+  }
 ```
 
