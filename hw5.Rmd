@@ -185,7 +185,7 @@ ggplot(
 control_df/exp_df
 ```
 
-It looks like the weekly observations for subjects in the control arm  did not increase as much as the observations for subjects in the 
+It looks like the weekly observations for subjects in the control arm did not increase as much and as consistently as the observations for subjects in the 
 experiment arm.
 
 ## Problem 3
