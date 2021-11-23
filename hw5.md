@@ -179,32 +179,43 @@ over time by experiment arm.
 control_df =  
   filter(study_data, experiment_arm == "con") %>% 
 ggplot( 
-  aes(x = weeks, y = observation, color = ID)) +
+ aes(x = weeks, y = observation, color = ID,)) +
   geom_point(aes(group = ID)) +
   geom_line(aes(group = ID)) +
-  theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'), 
-        legend.position = 'right') +
-   xlab("Weeks") + ylab("Observation") +
-   scale_colour_discrete(name = "ID")
+  theme(legend.position = 'none') +
+   xlab("Weeks") + ylab("Observation") 
 
-control_df
-```
 
-<img src="hw5_files/figure-gfm/unnamed-chunk-8-1.png" width="90%" />
-
-``` r
 exp_df =  
   filter(study_data, experiment_arm == "exp") %>% 
 ggplot( 
   aes(x = weeks, y = observation, color = ID)) +
   geom_point(aes(group = ID)) +
   geom_line(aes(group = ID)) +
-  theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'), 
-        legend.position = 'right') +
+  theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'),
+        legend.position = 'bottom') +
    xlab("Weeks") + ylab("Observation") +
    scale_colour_discrete(name = "ID")
 
-exp_df
+control_df/exp_df
 ```
 
-<img src="hw5_files/figure-gfm/unnamed-chunk-8-2.png" width="90%" />
+<img src="hw5_files/figure-gfm/unnamed-chunk-8-1.png" width="90%" />
+
+## Problem 3
+
+``` r
+set.seed(10)
+
+iris_with_missing = iris %>% 
+  map_df(~replace(.x, sample(1:150, 20), NA)) %>%
+  mutate(Species = as.character(Species))
+
+missing_values_function = function(iris_df) {
+ 
+   
+
+return(iris_df)
+
+}
+```
