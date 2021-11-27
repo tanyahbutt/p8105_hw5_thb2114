@@ -215,5 +215,8 @@ missing(iris_with_missing$species)
 missing(iris_with_missing$sepal_length) 
 mean(iris_with_missing$sepal_length, na.rm = TRUE) 
 
+iris_with_missing %>% 
+  map_df(missing)
+
 ```
 
