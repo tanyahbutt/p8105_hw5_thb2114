@@ -156,8 +156,7 @@ study_data =
 
 I will now create a spaghetti plot showing observations on each subject over time by experiment arm.
 
-```{r}
-
+```{r, collapse = TRUE}
 control_df =  
   filter(study_data, experiment_arm == "con") %>% 
 ggplot( 
@@ -190,19 +189,31 @@ experiment arm.
 
 ## Problem 3
 
-```{r}
+```{r, collapse = TRUE}
 set.seed(10)
 
 iris_with_missing = iris %>% 
   map_df(~replace(.x, sample(1:150, 20), NA)) %>%
-  mutate(Species = as.character(Species))
+  mutate(Species = as.character(Species)) %>% 
+  janitor::clean_names()
 
-missing_values_function = function(iris_df) {
- 
-   
-
-return(iris_df)
-
+missing = function(x){
+  
+  if (is.character(x)) {
+    x[is.na(x)] <- "virginica"
+  return(x)
 }
+  if (!is.character(x)) {
+    x[is.na(x)] <- mean(x, na.rm = TRUE)
+  return(x)
+}
+  x[is.na(x)] <- mean(x, na.rm = TRUE)
+  return(x)
+}
+
+missing(iris_with_missing$species) 
+missing(iris_with_missing$sepal_length) 
+mean(iris_with_missing$sepal_length, na.rm = TRUE) 
+
 ```
 

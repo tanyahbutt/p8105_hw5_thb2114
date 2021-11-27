@@ -183,8 +183,9 @@ ggplot(
   geom_point(aes(group = ID)) +
   geom_line(aes(group = ID)) +
   theme(legend.position = 'none') +
-   xlab("Weeks") + ylab("Observation") 
-
+   xlab("Weeks") + ylab("Observation") +
+  labs(
+    title = "Control Arm")
 
 exp_df =  
   filter(study_data, experiment_arm == "exp") %>% 
@@ -195,12 +196,18 @@ ggplot(
   theme(legend.text = element_text(size = 8), legend.spacing.x = unit(0.05, 'cm'),
         legend.position = 'bottom') +
    xlab("Weeks") + ylab("Observation") +
-   scale_colour_discrete(name = "ID")
+   scale_colour_discrete(name = "ID") +
+  labs(
+    title = "Experiment Arm")
 
 control_df/exp_df
 ```
 
 <img src="hw5_files/figure-gfm/unnamed-chunk-8-1.png" width="90%" />
+
+It looks like the weekly observations for subjects in the control arm
+did not increase as much and as consistently as the observations for
+subjects in the experiment arm.
 
 ## Problem 3
 
@@ -209,13 +216,74 @@ set.seed(10)
 
 iris_with_missing = iris %>% 
   map_df(~replace(.x, sample(1:150, 20), NA)) %>%
-  mutate(Species = as.character(Species))
+  mutate(Species = as.character(Species)) %>% 
+  janitor::clean_names()
 
-missing_values_function = function(iris_df) {
- 
-   
-
-return(iris_df)
-
+missing = function(x){
+  
+  if (is.character(x)) {
+    x[is.na(x)] <- "virginica"
+  return(x)
 }
+  if (!is.character(x)) {
+    x[is.na(x)] <- mean(x, na.rm = TRUE)
+  return(x)
+}
+  x[is.na(x)] <- mean(x, na.rm = TRUE)
+  return(x)
+}
+
+missing(iris_with_missing$species) 
+##   [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##   [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##  [11] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##  [16] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##  [21] "setosa"     "virginica"  "setosa"     "setosa"     "virginica" 
+##  [26] "setosa"     "virginica"  "setosa"     "setosa"     "setosa"    
+##  [31] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##  [36] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+##  [41] "setosa"     "virginica"  "setosa"     "setosa"     "setosa"    
+##  [46] "virginica"  "setosa"     "setosa"     "setosa"     "setosa"    
+##  [51] "virginica"  "versicolor" "versicolor" "versicolor" "versicolor"
+##  [56] "versicolor" "virginica"  "versicolor" "virginica"  "versicolor"
+##  [61] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+##  [66] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+##  [71] "versicolor" "virginica"  "versicolor" "versicolor" "versicolor"
+##  [76] "versicolor" "versicolor" "versicolor" "versicolor" "virginica" 
+##  [81] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+##  [86] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+##  [91] "versicolor" "versicolor" "versicolor" "virginica"  "versicolor"
+##  [96] "versicolor" "versicolor" "versicolor" "versicolor" "virginica" 
+## [101] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [106] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [111] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [116] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [121] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [126] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [131] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [136] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [141] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+## [146] "virginica"  "virginica"  "virginica"  "virginica"  "virginica"
+missing(iris_with_missing$sepal_length) 
+##   [1] 5.100000 4.900000 4.700000 4.600000 5.000000 5.400000 5.819231 5.000000
+##   [9] 4.400000 4.900000 5.400000 4.800000 5.819231 4.300000 5.819231 5.700000
+##  [17] 5.400000 5.100000 5.700000 5.100000 5.400000 5.100000 4.600000 5.819231
+##  [25] 4.800000 5.000000 5.000000 5.200000 5.819231 4.700000 4.800000 5.400000
+##  [33] 5.200000 5.500000 4.900000 5.000000 5.500000 4.900000 4.400000 5.100000
+##  [41] 5.000000 4.500000 4.400000 5.000000 5.100000 4.800000 5.100000 4.600000
+##  [49] 5.300000 5.000000 7.000000 6.400000 6.900000 5.500000 6.500000 5.700000
+##  [57] 6.300000 4.900000 6.600000 5.200000 5.000000 5.900000 6.000000 6.100000
+##  [65] 5.600000 6.700000 5.600000 5.800000 6.200000 5.600000 5.900000 5.819231
+##  [73] 6.300000 5.819231 6.400000 6.600000 6.800000 6.700000 6.000000 5.700000
+##  [81] 5.500000 5.819231 5.800000 6.000000 5.400000 5.819231 6.700000 5.819231
+##  [89] 5.600000 5.500000 5.500000 5.819231 5.800000 5.000000 5.819231 5.700000
+##  [97] 5.700000 6.200000 5.100000 5.700000 6.300000 5.800000 7.100000 6.300000
+## [105] 6.500000 7.600000 4.900000 7.300000 6.700000 5.819231 6.500000 5.819231
+## [113] 6.800000 5.700000 5.800000 6.400000 6.500000 7.700000 7.700000 6.000000
+## [121] 5.819231 5.600000 7.700000 6.300000 6.700000 7.200000 6.200000 6.100000
+## [129] 6.400000 7.200000 7.400000 7.900000 6.400000 5.819231 6.100000 5.819231
+## [137] 5.819231 6.400000 6.000000 6.900000 6.700000 6.900000 5.819231 6.800000
+## [145] 6.700000 6.700000 6.300000 6.500000 5.819231 5.900000
+mean(iris_with_missing$sepal_length, na.rm = TRUE) 
+## [1] 5.819231
 ```
